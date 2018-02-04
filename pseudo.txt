@@ -42,14 +42,10 @@ while(current_alt-FINAL_HEIGHT > 0 && current_alt >= SUBSONIC_HEIGHT){
    predicted_alt = get_new_alt(data.alt, data.vel, data.acc);
    try{
       //Throw errors based on different conditions
-      if (current_alt-predicted_alt < deploy_height(data)) throw "not eligible for actuation.";
       if (deploy_check(current_alt, predicted_alt) === false) throw "height difference not great enough";
       deploy();
    }
    catch(err){
       print(err);
-   }
-   if (current_alt >= FINAL_HEIGHT){
-      break();
    }
 }
